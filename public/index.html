@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- Declares mainApp as the starting Angular module -->
+<html class="no-js" ng-app="mainApp">
+<head>
+    <meta charset="utf-8">
+    <title>BOI Book A Room</title>
+    <meta name="description" content="BOI Workbenches!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="style.css"/>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6r9DaTCZdMx6MxqQQEviy3GaGS-5tXrg"></script>
+
+    <!-- Modernizr -->
+    <script src="../bower_components/modernizr/bin/modernizr"></script>
+
+   <!-- JS Source -->
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+
+    <!-- Angular Source -->
+    <script src="js/app.js"></script>
+    <script src="js/addCtrl.js"></script>
+    <script src="js/queryCtrl.js"></script>
+    <script src="js/gservice.js"></script>
+    
+</head>
+<body ng-controller="queryCtrl">
+<div class="container">
+    <div class="header">
+        <h3 class="text-muted">BOI Workbenches</h3>
+    </div>
+
+    <!-- Map and Side Panel -->
+    <div class="row content">
+
+             <!-- Google Map -->
+        <div class="col-md-7">
+            <div id="map"></div>
+        </div>
+        
+        <!-- Side Panel -->
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                
+                <!-- Panel Title -->
+                <div class="panel-heading">
+                    <h2 class="panel-title text-center">Find A Room! <span class="glyphicon glyphicon-map-marker"></span></h2>
+                </div>
+                
+                <!-- Panel Body -->
+                <div class="panel-body">
+                    <!-- Creates Form -->
+                    <form name ="queryForm" novalidate>
+
+                        <div class="form-group">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" class="form-control" id="latitude" value="53.272" ng-model="formData.latitude" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" class="form-control" id="longitude" value="-9.005" ng-model="formData.longitude" readonly>
+                        </div>
+
+               			<div class="form-group">
+                    		<label for="distance">Max. Distance(km)</label>
+                    		<input type="text" class="form-control" id="distance" placeholder="50" ng-model="formData.distance">
+                		</div>
+
+                        <!-- Submit button. tied to queryUsers()  -->
+                        <button type="submit" class="btn btn-danger btn-block" ng-click="queryUsers()" >Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+</body>
+</html>
