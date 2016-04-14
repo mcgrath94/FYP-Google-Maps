@@ -3,7 +3,7 @@
 // gService factory - primary means interacting with database
 angular.module('gservice', []).factory('gservice', function($http){
 
-    
+
         var googleMapService = {};
         var locations = [];
 
@@ -11,7 +11,7 @@ angular.module('gservice', []).factory('gservice', function($http){
         var selectedLat = 53.272;
         var selectedLong = -9.005;
 
-       
+
         // Refresh Map using parameters below
         googleMapService.refresh = function(latitude, longitude, filteredResults){
 
@@ -21,7 +21,7 @@ angular.module('gservice', []).factory('gservice', function($http){
     selectedLong = longitude;
 
     if (filteredResults){
-        
+
         locations = convertToMapPoints(filteredResults); //show points are filtered
         initialize(latitude, longitude, true);
     }
@@ -29,7 +29,7 @@ angular.module('gservice', []).factory('gservice', function($http){
     else {
         // Perform an AJAX call to get all of the records in the db.
         $http.get('/users').success(function(response){
-            
+
             locations = convertToMapPoints(response);//convert results to points on map
             initialize(latitude, longitude, false);
         }).error(function(){});
@@ -47,7 +47,7 @@ angular.module('gservice', []).factory('gservice', function($http){
 
                 // The info window when the map point is clicked on
                 var  contentString =
-                    '<p><b>Username</b>: ' + user.username +
+                    '<p><b>Workbench</b>: ' + user.username +
                     '<br><b>Rooms</b>: ' + user.rooms +
                     '<br><a href =' + user.testLink + '>   Book this centre!</a> ' +
                     '</p>';
@@ -73,8 +73,8 @@ var initialize = function(latitude, longitude, filter) {
 
     var myLatLng = {lat: selectedLat, lng: selectedLong};
 
-    if (!map){ //if there is no map, will create a new map 
-        
+    if (!map){ //if there is no map, will create a new map
+
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 7,//just covers all of Ireland
             center: myLatLng
@@ -99,9 +99,9 @@ var initialize = function(latitude, longitude, filter) {
         });
 
         google.maps.event.addListener(marker, 'click', function(e){ //listener so marker can be clicked
-            
+
             //open info window
-            currentSelectedMarker = n; 
+            currentSelectedMarker = n;
             n.message.open(map, marker);
         });
     });
