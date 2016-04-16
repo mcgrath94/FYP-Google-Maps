@@ -1,7 +1,7 @@
 //gService.js
 
 // gService factory - primary means interacting with database
-angular.module('gservice', []).factory('gservice', function($http){
+angular.module('gservice', []).factory('gservice', function($rootScope, $http){
 
 
         var googleMapService = {};
